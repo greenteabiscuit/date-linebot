@@ -29,6 +29,12 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
+@app.route("/",methods=['POST'])
+def route():
+    signature = request.headers['X-Line-Signature']
+    body = request.get_data(as_text=True)
+    return 'OK'
+
 #LINEからのWebhook
 @app.route("/callback", methods=['POST'])
 def callback():
