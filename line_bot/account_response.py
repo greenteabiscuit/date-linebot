@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 class Response:
     dic={"会社概要":"COMPANY",
          "事業内容":"SERVICE",
@@ -9,7 +9,8 @@ class Response:
          "こんにちは":"5",
          "こんばんは":"5",
          "こんにちわ":"6",
-         "こんばんわ":"6"
+         "こんばんわ":"6",
+         "あ":str(os.environ["HEROKU_APP_NAME"])
          }
     count=0
     
