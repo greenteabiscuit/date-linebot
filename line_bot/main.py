@@ -12,9 +12,11 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
+from postgres import Postgres
 
 app = Flask(__name__)
-res=Response()
+res = Response()
+pg = Postgres()
 
 # Herokuの変数からトークンなどを取得
 channel_secret = os.environ['LINE_CHANNEL_SECRET']
@@ -45,6 +47,12 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
+
+# フォローされたらDBへユーザー情報登録
+@handler.add(FollowEvent)
+def handle_follow(event):
+    # pg.register_user(event.source.user_id)
+    
 
 """
 LINEでMessageEvent（普通のメッセージを送信された場合）が起こった場合
