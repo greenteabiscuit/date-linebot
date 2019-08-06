@@ -22,10 +22,12 @@ class Postgres:
                 cur.execute(query)
                 return cur.fetchall()
             
-    """            
-    def create_table(self):
-        query="CREATE TABLE user_info (id serial, user_id varchar(50) NOT NULL);"
+    def is_user_exists(self, user_id):
+        query = "SELECT user_id FROM user_info WHERE user_id = '%s';"
         with self.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute(query)
-    """
+                cur.execute(query % user_id)
+                if cur.fetchall() != []:
+                    return True
+                else:
+                    return False
