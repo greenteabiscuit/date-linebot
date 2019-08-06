@@ -51,7 +51,8 @@ def callback():
 # フォローされたらDBへユーザー情報登録
 @handler.add(FollowEvent)
 def handle_follow(event):
-    pg.register_user(event.source.user_id)
+    if not pg.is_user_exists(event.source.user_id):
+        pg.register_user(event.source.user_id)
 
 """
 LINEでMessageEvent（普通のメッセージを送信された場合）が起こった場合
