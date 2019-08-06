@@ -52,7 +52,7 @@ def callback():
 @handler.add(FollowEvent)
 def handle_follow(event):
     # pg.register_user(event.source.user_id)
-    pass
+    pg.create_table()
     
 
 """
