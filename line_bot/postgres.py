@@ -40,4 +40,4 @@ class Postgres:
         query = "CREATE TABLE cotanct (id serial, user_id varchar(50), name varchar(50), kana varchar(50), mail varchar(100), title varchar(50), text varchar(500), date date, time time);"
         with self.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute()
+                cur.execute(query)
