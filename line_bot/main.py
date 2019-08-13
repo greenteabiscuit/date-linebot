@@ -18,6 +18,8 @@ app = Flask(__name__)
 res = Response()
 pg = Postgres()
 
+pg.create_table()
+
 # Herokuの変数からトークンなどを取得
 channel_secret = os.environ['LINE_CHANNEL_SECRET']
 channel_access_token = os.environ['LINE_CHANNEL_ACCESS_TOKEN']
