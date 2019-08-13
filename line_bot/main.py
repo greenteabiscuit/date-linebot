@@ -70,7 +70,7 @@ def handle_message(event):
     TextSendMessage(text = os.environ[res.getResponse(event.message.text)])
     )
     
-def push_message:
+def push_message():
     try:
         line_bot_api.push_message('<to>', TextSendMessage(text='Hello World!'))
     except LineBotApiError as e:
