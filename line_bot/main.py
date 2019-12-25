@@ -61,19 +61,20 @@ LINEでMessageEvent（普通のメッセージを送信された場合）が起�
 reply_messageの第一引数のevent.reply_tokenは、イベントの応答に用いるトークンです。 
 第二引数には、linebot.modelsに定義されている返信用のTextSendMessageオブジェクトを渡しています。
 """
-@handler.add(MessageEvent, message = TextMessage)
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    if event.message.text == "id":
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.source.user_id)
+        )
     
     # 入力された内容(event.message.text)に応じて返信する
     line_bot_api.reply_message(
     event.reply_token,
     TextSendMessage(text=os.environ[res.getResponse(event.message.text)])
     )
-    if event.message.text == "id":
-        line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.source.user_id)
-        )
+    
     
 def push_message():
     try:
