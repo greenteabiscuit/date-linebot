@@ -67,8 +67,13 @@ def handle_message(event):
     # 入力された内容(event.message.text)に応じて返信する
     line_bot_api.reply_message(
     event.reply_token,
-    TextSendMessage(text = os.environ[res.getResponse(event.message.text)])
+    TextSendMessage(text=os.environ[res.getResponse(event.message.text)])
     )
+    if event.message.text == "id":
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.source.user_id)
+        )
     
 def push_message():
     try:
