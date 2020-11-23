@@ -38,7 +38,7 @@ handler = WebhookHandler(channel_secret)
 def callback():
     # リクエストヘッダーから署名検証のための値を取得
     print("hello world")
-
+	print(request.get_data(as_text=True))
     signature = request.headers['X-Line-Signature']
     
     # リクエストボディを取得
